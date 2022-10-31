@@ -1,0 +1,90 @@
+@page{
+    margin: 0px;
+    padding: 0px;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+@font-face {
+    font-family: 'code39';
+    src: url('fonts/free3of9-webfont.ttf') format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+.codigoBarras{
+    position: absolute;
+    margin-top: 450px;
+    height: 60px;
+    margin-left: 0px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, .9);
+    width: 324px; 
+}
+.otraCodigoBarras{
+    font-family: 'code39';
+    font-size: 4em;
+}
+.categoria{
+    position: absolute;
+    margin-top: 260px;
+    margin-left: 195px;
+    padding: 10px;
+    width: 790px;
+    height: 40px;
+    text-align: center;
+    // background-color: rgba(255, 255, 255, .8);
+    width: 324px; 
+    -webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg); 
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;    
+}
+.otraCategoria{
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.hoja{
+    height: 1056px;
+    width: 816px;
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.hoja img{
+    width: 100%;
+}
+.codigoQr{
+    margin-top: 220px;
+    margin-left: 93px;
+    position: absolute;
+    width: 140px;
+    height: 140px;
+}
+.nomInvitado{
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    padding: 5px;
+    margin-top: 370px;
+    margin-left: 60px;
+    font-size: .5em;
+    text-align: center;
+    background-color: rgba(255, 255, 255, .9);
+}
+.fndoCard{
+    // background-color: rgba($color: #fd0000, $alpha: 0.6);
+}
+.reverso{
+    position: absolute;
+    width: 385px;
+    height: 320px;
+    margin-left: 408px;
+    margin-top: 100px;
+    padding: 10px;
+    // background-color: rgba($color: #fd0000, $alpha: 0.6);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}

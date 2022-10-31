@@ -1,0 +1,37 @@
+@page {
+  margin: 0px;
+  padding: 0px; }
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif; }
+
+.hoja {
+  height: 816px;
+  width: 1056px;
+  position: absolute; }
+
+.hoja img {
+  width: 100%; }
+
+.codigoQr {
+  margin-top: 213px;
+  margin-left: 445px;
+  position: absolute;
+  width: 165px;
+  height: 165px; }
+
+.codigoQr img {
+  width: 100%; }
+
+.nomInvitado {
+  position: absolute;
+  width: 910px;
+  margin-top: 425px;
+  margin-left: 75px;
+  text-align: center; }
+
+.fndoCard {
+  background-color: rgba(253, 0, 0, 0.6); }
+
+/*# sourceMappingURL=style.css.map */
