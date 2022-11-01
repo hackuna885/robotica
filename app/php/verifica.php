@@ -9,7 +9,7 @@ $_POST = json_decode(file_get_contents("php://input"), true);
 
 // Entradas Form
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
-$nEmpleado = (isset($_POST['nEmpleado'])) ? $_POST['nEmpleado'] : '';
+$nBarCode = (isset($_POST['nBarCode'])) ? $_POST['nBarCode'] : '';
 
 $fechaCap = date('d-m-Y');
 $horaCap = date('g:i:s a');
@@ -21,32 +21,39 @@ $con = new SQLite3("../data/data.db");
 switch ($opcion) {
 	//Mostrar Lista
 	case 1:
-		$cs = $con -> query("SELECT * FROM vEmpleados2021 WHERE md5ClaveUno = '$nEmpleado'");
+		$cs = $con -> query("SELECT * FROM roboticaUsr WHERE barCode = '$nBarCode'");
 		while ($resul = $cs -> fetchArray()) {
-				$claveUno = $resul['claveUno'];
-				$nomCompleto = $resul['nomCompleto'];
-				$depto = $resul['depto'];
-				$puesto = $resul['puesto'];
+				$id = $resul['id'];
+				$lider = $resul['lider'];
+				$equipo = $resul['equipo'];
+				$institucion = $resul['institucion'];
+				$sedeRegional = $resul['sedeRegional'];
+				$categoria = $resul['categoria'];
+				$barCode = $resul['barCode'];
 				$asistencia = $resul['asistencia'];
-				$comodin = $resul['comodin'];
+				$fechaReg = $resul['fechaReg'];
 			}
 
-			if(!empty($comodin)){
+			if(!empty($fechaReg)){
 
 				echo json_encode('
 				<div class="alert alert-success text-center animate__animated animate__fadeIn" role="alert">
-					Invitado registrado a las: <span style="font-size: .7em;">'.$comodin.'</span>
+					Invitado registrado a las: <span style="font-size: .7em;">'.$fechaReg.'</span>
 				</div>
 				<p>
 					<div class="p-2 rounded" style="text-align: left; background-color: rgba(186, 186, 186, 0.5);">
 
-						<b>Núm. Empleado: </b><i>'.$claveUno.'</i>
+						<b>Id: </b><i>'.$barCode.'</i>
 						<br>
-						<b>Nombre: </b><i>'.$nomCompleto.'</i>
+						<b>Institución: </b><i>'.$institucion.'</i>
 						<br>
-						<b>Area: </b><i>'.$depto.'</i>
+						<b>Nombre: </b><i>'.$lider.'</i>
 						<br>
-						<b>Cargo: </b><i>'.$puesto.'</i>
+						<b>Equipo: </b><i>'.$equipo.'</i>
+						<br>
+						<b>Sede Regional: </b><i>'.$sedeRegional.'</i>
+						<br>
+						<b>Categoría: </b><i>'.$categoria.'</i>
 					</div>
 				</p>
 				<div class="btn btn-success form-control disabled">Registro</div>
@@ -60,13 +67,17 @@ switch ($opcion) {
 				<p>
 					<div class="p-2 rounded" style="text-align: left; background-color: rgba(186, 186, 186, 0.5);">
 
-						<b>Núm. Empleado: </b><i>'.$claveUno.'</i>
+						<b>Id: </b><i>'.$barCode.'</i>
 						<br>
-						<b>Nombre: </b><i>'.$nomCompleto.'</i>
+						<b>Institución: </b><i>'.$institucion.'</i>
 						<br>
-						<b>Area: </b><i>'.$depto.'</i>
+						<b>Nombre: </b><i>'.$lider.'</i>
 						<br>
-						<b>Cargo: </b><i>'.$puesto.'</i>
+						<b>Equipo: </b><i>'.$equipo.'</i>
+						<br>
+						<b>Sede Regional: </b><i>'.$sedeRegional.'</i>
+						<br>
+						<b>Categoría: </b><i>'.$categoria.'</i>
 					</div>
 				</p>
 				<button class="btn btn-success form-control">Registro</button>
@@ -78,7 +89,7 @@ switch ($opcion) {
 		break;
 	//Actualizar	
 	case 2:
-		$cs = $con -> query("UPDATE empleados SET asistencia = 1, comodin = '$fechaHoraReg' WHERE md5ClaveUno = '$nEmpleado'");
+		$cs = $con -> query("UPDATE roboticaUsr SET asistencia = 1, fechaReg = '$fechaHoraReg' WHERE barCode = '$nBarCode'");
 		echo json_encode('correcto');
 
 		break;

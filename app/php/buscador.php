@@ -36,40 +36,23 @@ $horaCap = date('g:i:s a');
 $fechaHoraReg = $fechaCap . ' ' . $horaCap;
 
     $con = new SQLite3("../data/data.db");
-    $cs = $con -> query("SELECT * FROM vEmpleados2021 WHERE id = '1'");
+    $cs = $con -> query("SELECT * FROM roboticaUsr WHERE barCode = '$id'");
     while ($resul = $cs -> fetchArray()) {
         $id_data = $resul['id'];
-        $claveUno = $resul['claveUno'];
-        $md5ClaveUno = $resul['md5ClaveUno'];
-        $nomCompleto = $resul['nomCompleto'];
-        $depto = $resul['depto'];
-        $puesto = $resul['puesto'];
-        $asistencia = $resul['asistencia'];
+        $lider = $resul['lider'];
+        $equipo = $resul['equipo'];
+        $institucion = $resul['institucion'];
+        $sedeRegional = $resul['sedeRegional'];
+        $categoria = $resul['categoria'];
+        $barCode = $resul['barCode'];
     };
 
-    if (isset($id_data)) {
 
-        $archivo = '../../img/buscador/empleados/'.$claveUno.'.jpg';
-
-        if (file_exists($archivo)) {
-            $imgPersonal = '../img/buscador/empleados/'.$claveUno.'.jpg';
-        }else{
-            $imgPersonal = '../img/buscador/usr.svg';
-        }
-
-        echo '
-            <img src="'.$imgPersonal.'" class="img-fluid rounded" style="width: 150px;">
-            </div>
-            <div class="form-group" v-html="datos"></div>
-        ';
-    }else{
-        echo '
-            <img src="../img/buscador/usr.svg" class="img-fluid rounded" style="width: 150px;">
-            <h1>No tengo resultados</h1>
-            </div>
-        ';
-    }
-
+            echo '
+                    <img src="../img/buscador/usr.svg" class="img-fluid rounded" style="width: 150px;">
+                    </div>
+                    <div class="form-group" v-html="datos"></div>
+                ';
 
 
     $con -> close();
@@ -94,7 +77,7 @@ $fechaHoraReg = $fechaCap . ' ' . $horaCap;
                 datos: '',
                 notificaEstado: '',
                 msgAlert: '',
-                nEmpleado: '<?php echo $md5ClaveUno;?>'
+                nBarCode: '<?php echo $barCode;?>'
             },
             computed: {
             },
@@ -102,7 +85,7 @@ $fechaHoraReg = $fechaCap . ' ' . $horaCap;
                 alta () {
                     axios.post('../verifica/alta.app', {
                         opcion: 2,
-                        nEmpleado: this.nEmpleado              
+                        nBarCode: this.nBarCode              
                     })
                     .then(response => {
                         if (response.data === 'correcto') {
@@ -118,13 +101,17 @@ $fechaHoraReg = $fechaCap . ' ' . $horaCap;
                             <p>
                             <div class="p-2 rounded" style="text-align: left; background-color: rgba(186, 186, 186, 0.5);">
 
-                                <b>Núm. Empleado: </b><i><?php echo $claveUno;?></i>
+                                <b>Id: </b><i><?php echo $barCode;?></i>
                                 <br>
-                                <b>Nombre: </b><i><?php echo $nomCompleto;?></i>
+                                <b>Institución: </b><i><?php echo $institucion?></i>
                                 <br>
-                                <b>Area: </b><i><?php echo $depto;?></i>
+                                <b>Nombre: </b><i><?php echo $lider;?></i>
                                 <br>
-                                <b>Cargo: </b><i><?php echo $puesto;?></i>
+                                <b>Equipo: </b><i><?php echo $equipo;?></i>
+                                <br>
+                                <b>Sede Regional: </b><i><?php echo $sedeRegional;?></i>
+                                <br>
+                                <b>Categoría: </b><i><?php echo $categoria;?></i>
                             </div>
                         </p>
                         <div class="btn btn-success form-control disabled">Registro</div>
@@ -139,7 +126,7 @@ $fechaHoraReg = $fechaCap . ' ' . $horaCap;
                 listaDatos () {
                     axios.post('../verifica/alta.app', {
                         opcion: 1,
-                        nEmpleado: this.nEmpleado 
+                        nBarCode: this.nBarCode 
                     })
                     .then(response => {
                         this.datos = response.data
