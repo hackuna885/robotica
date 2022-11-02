@@ -1,5 +1,5 @@
 <html>
 	<head>
-		<meta http-equiv="REFRESH" content="0; url=http://utfv.edomex.gob.mx/">
+		<meta http-equiv="REFRESH" content="0; url=buscadorDos/usuario.app">
 	</head>
 </html>
